@@ -1,0 +1,26 @@
+/*Pick from both sides!*/
+int Solution::solve(vector<int> &A,int B){
+    //declaring variables
+    int n=A.size(),sum_from_front=0,sum_from_back=0;
+    //computing cummulative indices from front and back
+    vector<int> cummulative_sum_from_front(n,0),cummulative_sum_from_back(n,0);
+    for(int i=0;i<n;i++){
+        int front_ind=i,back_ind=n-1-i;
+        sum_from_front+=A[front_ind];
+        sum_from_back+=A[back_ind];
+        cummulative_sum_from_front[front_ind]=sum_from_front;
+        cummulative_sum_from_back[back_ind]=sum_from_back;
+    }
+    //reversing so that can take first (B-i) elements and no need to calculate how much from back
+    reverse(cummulative_sum_from_back.begin(),cummulative_sum_from_back.end());
+    //Now take i elements from front and (B-i) from back
+    int max_sum=INT_MIN;
+    for(int i=0;i<=B;i++){
+        int num_elem_front=i,num_elem_back=B-i;
+        int sum_front=(num_elem_front==0)?0:cummulative_sum_from_front[i-1];
+        int sum_back=(num_elem_back==0)?0:cummulative_sum_from_back[B-i-1];
+        int sum_total=sum_front+sum_back;
+        max_sum=max(max_sum,sum_total);
+    }
+    return max_sum;
+}
