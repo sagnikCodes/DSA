@@ -1,0 +1,22 @@
+/*Pick from both sides!*/
+
+int solve(vector<int> &A,int B){
+    //declaring variables
+    int n=A.size(),min_sum=INT_MAX,total_sum=0,window_sum=0,req_window_size=n-B,start_ind=0;
+    //end_ind of the current window
+    for(int end_ind=0;end_ind<n;end_ind++){
+        int end_elem=A[end_ind];
+        total_sum+=end_elem;
+        window_sum+=end_elem;
+        int window_size=end_ind-start_ind+1;
+        if(window_size==req_window_size){
+            min_sum=min(min_sum,window_sum);
+            int start_elem=A[start_ind++];
+            window_sum-=start_elem;
+        }
+    }
+    bool edge_case=(n==B);
+    if(edge_case) return total_sum;
+    //answer will be sum of all elements except in min sum
+    return total_sum-min_sum;
+}
