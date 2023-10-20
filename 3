@@ -1,0 +1,12 @@
+/*Greater than All*/
+
+int Solution::solve(vector<int> &A){
+    int max_till_now=A[0],count=1;
+    for(auto it : A){
+        if(it>max_till_now){
+            count++;
+            max_till_now=it;
+        }
+    }
+    return count;
+}
