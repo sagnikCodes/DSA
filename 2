@@ -1,0 +1,12 @@
+/*Chips Factory*/
+
+vector<int> Solution::solve(vector<int> &A){
+    vector<int> answer;
+    int num_zeros=0;
+    for(auto it : A){
+        if(it==0) num_zeros++;
+        else answer.push_back(it);
+    }
+    for(int i=0;i<num_zeros;i++) answer.push_back(0);
+    return answer;
+}
