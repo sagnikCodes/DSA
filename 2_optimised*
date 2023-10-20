@@ -1,0 +1,11 @@
+/*Chips Factory*/
+
+vector<int> Solution::solve(vector<int> &A){
+    //keeping the pointer at the last zero seen so that can swap it with non 0
+    //i and last_zero_seen_ind will separate if we get A[i]=0
+    int last_zero_seen_ind=0,n=A.size();
+    for(int i=0;i<n;i++){
+        if(A[i]!=0) swap(A[i],A[last_zero_seen_ind++]);
+    }
+    return A;
+}
