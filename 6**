@@ -1,0 +1,12 @@
+/*Duplicate Array*/
+int Solution::repeatedNumber(const vector<int> &A){
+    int n=A.size();
+    vector<int> B=A;
+    for(int i=0;i<n;i++){
+        //as A[i] is in index of A ka range so can jump and make it negative
+        int elem=abs(B[i]);
+        if(B[elem]<0) return elem;
+        else B[elem]=-B[elem];
+    }
+    return -1;
+}
