@@ -1,0 +1,11 @@
+/*Pascal Traingle Row*/
+
+vector<int> Solution::getRow(int A){
+    vector<int> pascal_row(A+1,1);
+    for(int i=0;i<A-1;i++){
+        int numerator=pascal_row[i]*(A-i);
+        int denominator=i+1;
+        pascal_row[i+1]=numerator/denominator;
+    }
+    return pascal_row;
+}
